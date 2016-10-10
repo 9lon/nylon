@@ -1,0 +1,21 @@
+{
+  "name": "nylon",
+  "homepage": "https://github.com/9lon/nylon",
+  "authors": [
+    "Namkhaeng PC-NEXT <pongpanot.t@nexts-corp.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "polymer/polymer#^1.7.0"
+  }
+}
