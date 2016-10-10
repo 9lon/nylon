@@ -1,0 +1,51 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+
+<link rel="import" href="nylon-init.html">
+
+<dom-module id="nylon-app">
+    <template>
+        <app-location route="{{route}}"></app-location>
+        <app-route
+            route="{{route}}"
+            pattern="/:page"
+            data="{{routeData}}"
+            tail="{{subroute}}"></app-route>
+
+        <nylon-init selected="[[page]]"></nylon-init>
+        
+    </template>
+    <script>
+        Polymer({
+            is:'nylon-app',
+            properties:{
+                page: {
+                    type: String,
+                    reflectToAttribute: true,
+                    observer: '_pageChanged'
+                }
+            },
+            observers: [
+                '_routePageChanged(routeData.page)'
+            ],
+            _routePageChanged: function(page) {
+                this.page = page || 'home';
+                // Scroll to the top of the page on every *route* change. Use `Polymer.AppLayout.scroll`
+                // with `behavior: 'silent'` to disable header scroll effects during the scroll.
+                //Polymer.AppLayout.scroll({ top: 0, behavior: 'silent' });
+                // Close the drawer - in case the *route* change came from a link in the drawer.
+                //this.drawerOpened = false;
+            },
+            _pageChanged: function(page, oldPage) {
+                if (page != null) {
+                    this.importHref(
+                        this.resolveUrl('/src/pages/page-' + page + '.html'),
+                        null, null, true
+                    );
+                }
+            }
+            
+        });
+    </script>
+</dom-module>

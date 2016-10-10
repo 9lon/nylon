@@ -1,0 +1,26 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+
+<dom-module id="nylon-init">
+    <template>
+        <iron-pages 
+            role="main" 
+            selected="[[selected]]" 
+            attr-for-selected="name" 
+            selected-attribute="visible">
+
+            <page-page1 name="page1"></page-page1>
+            <page-page2 name="page2"></page-page2>
+
+            <page-401 name="401"></page-401>
+            <page-403 name="403"></page-403>
+            <page-404 name="404"></page-404>
+
+        </iron-pages>
+    </template>
+    <script>
+        Polymer({
+            is:'nylon-init'
+        });
+    </script>
+</dom-module>
