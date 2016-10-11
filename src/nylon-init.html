@@ -1,24 +1,68 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+
 
 <dom-module id="nylon-init">
-    <template>
-        <iron-pages 
-            role="main" 
-            selected="[[selected]]" 
-            attr-for-selected="name" 
-            selected-attribute="visible">
+	<template>
+		<style is="custom-style">
+			app-toolbar {
+				/* Toolbar is the main header, so give it some color */
+				background-color: #FBFBFB;
+				/*font-family: 'Roboto', Helvetica, sans-serif;*/
+				/*color: white;*/
+				--app-toolbar-font-size: 24px;
+				box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+			}
+			
+			.menu {
+				background-color: #137AA5;
+				border-right: 1px solid #e5e5e5;
+				height: 100%;
+				overflow: auto;
+			}
+			
+			app-header-layout {
+				/*background: #F1F1F1;*/
+			}
+		</style>
 
-            <page-page1 name="page1"></page-page1>
-            <page-page2 name="page2"></page-page2>
+        <!--<app-drawer>
+                <div class="menu">
+                    <app-toolbar>Menu</app-toolbar>
+                    <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+                        <a name="page1" href="/page1">View One</a>
+                        <a name="page2" href="/page2">View Two</a>
+                    </iron-selector>
+                </div>
+			</app-drawer>-->
+		<app-header-layout>
+			<app-header fixed condenses effects="waterfall">
+				<app-toolbar>
+					<div main-title>App name</div>
+				</app-toolbar>
+			</app-header>
+			<iron-pages role="main" selected="[[selected]]" attr-for-selected="name" selected-attribute="visible">
 
-            <page-401 name="401"></page-401>
-            <page-403 name="403"></page-403>
-            <page-404 name="404"></page-404>
+                <page-page1 name="page1"></page-page1>
+                <page-page2 name="page2"></page-page2>
 
-        </iron-pages>
-    </template>
-    <script>
+                <page-401 name="401"></page-401>
+                <page-403 name="403"></page-403>
+                <page-404 name="404"></page-404>
+
+            </iron-pages>
+		</app-header-layout>
+
+	</template>
+
+
+	<script>
         Polymer({
             is:'nylon-init'
         });
