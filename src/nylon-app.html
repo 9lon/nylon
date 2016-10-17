@@ -13,8 +13,8 @@
             data="{{routeData}}"
             tail="{{subroute}}"></app-route>
 
-        <nylon-init selected="[[page]]"></nylon-init>
-        
+        <nylon-init selected="[[page]]" on-nylon-change-page="_changePage"></nylon-init>
+        <a id="changePath" href="#" style="display:none">link change path</a>
     </template>
     <script>
         Polymer({
@@ -24,18 +24,16 @@
                     type: String,
                     reflectToAttribute: true,
                     observer: '_pageChanged'
+                },
+                route: {
+                    observer:'_routeChange'
                 }
             },
             observers: [
                 '_routePageChanged(routeData.page)'
             ],
             _routePageChanged: function(page) {
-                this.page = page || 'home';
-                // Scroll to the top of the page on every *route* change. Use `Polymer.AppLayout.scroll`
-                // with `behavior: 'silent'` to disable header scroll effects during the scroll.
-                //Polymer.AppLayout.scroll({ top: 0, behavior: 'silent' });
-                // Close the drawer - in case the *route* change came from a link in the drawer.
-                //this.drawerOpened = false;
+                this.page = page || 'page1';
             },
             _pageChanged: function(page, oldPage) {
                 if (page != null) {
@@ -44,6 +42,13 @@
                         null, null, true
                     );
                 }
+            },
+            _changePage:function(e){
+                this.$.changePath.setAttribute("href", e.detail.path);
+                this.$.changePath.click();
+            },
+            _routeChange:function(val){
+                //console.log(val);
             }
             
         });
